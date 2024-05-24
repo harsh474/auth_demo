@@ -1,19 +1,10 @@
-const express = require("express") ; 
+//authRouter.js
+const express = require("express");
+const { user_signup, user_login } = require("../controllers/user_controller");
 
-const router = express.Router() ;
- 
-router.post("/signup" ,(req,res)=>{ 
-     console.log("Singing Up") ; 
-     const body = req.body ; 
-     res.status(200).json(body) ;
-    
-});
-router.post("/login" ,(req,res)=>{ 
-    console.log("Succesfuly Login") ; 
-   
-    const body = req.body ; 
-    res.status(200).json(body) ;
-   
-});
+const router = express.Router();
 
-module.exports = router ;
+router.post("/signup", user_signup);
+router.post("/login", user_login);
+
+module.exports = router;
