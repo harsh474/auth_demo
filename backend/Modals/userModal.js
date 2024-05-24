@@ -1,6 +1,7 @@
 const mongoose = require("mongoose") ; 
 const Schema = mongoose.Schema ; 
-
+const validator = require("validator");
+const bcrypt = require("bcrypt");
 const userSchema = new Schema ({ 
     email:{ 
         type:String,
@@ -9,11 +10,10 @@ const userSchema = new Schema ({
         
     }, 
     password: { 
-        type:string , 
+        type:String , 
         required:true,
     },
 }); 
-module.exports = mongoose.model("user",userSchema)
 /** --- userModal.js. --- **/
 // do not use arrow functions as we need to use "this" keyword inside
 userSchema.statics.signup = async function (email, password) {
@@ -73,3 +73,5 @@ userSchema.statics.login = async function(email, password) {
     return user;
 }
 
+
+module.exports = mongoose.model("user",userSchema)
