@@ -3,6 +3,8 @@ require("dotenv").config();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const port = process.env.PORT;
+const cookieParser = require("cookie-parser");
+
 
 const app = express();
 app.use(express.json());
@@ -21,6 +23,8 @@ app.use((req, res, next) => {
 const authRouter = require('../backend/routes/authRouter')
 app.use("/api/user",authRouter)
 // 
+app.use(cookieParser()) ;
+app.use(express.urlencoded({ extended: false }));
 
 mongoose
     .connect(process.env.MONGO_URI)
