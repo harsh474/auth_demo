@@ -52,10 +52,8 @@ const user_login = async (req,res) =>{
 }; 
 
 const user_profile = async (req,res) =>{ 
-    console.log("Checking profile!    ",req.cookies.uid) ;  
-    // console.log(req) ;
-    // // res.send("Profile page is working....") ;  
-    // res.send(req.cookie) ;
+    console.log("Checking profile!",req.cookies.uid) ;  
+    
     res.status(200).json({message:"Profile page is working...."}) ;
 };
 module.exports ={ 
