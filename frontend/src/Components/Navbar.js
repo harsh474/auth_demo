@@ -13,7 +13,13 @@ function Navbar() {
             </li>
             <li>
                 <NavLink to="/register">Register</NavLink>
+            </li> 
+            <li>
+                <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
+            
+            
+
             </ul>
         </nav>
     </div>

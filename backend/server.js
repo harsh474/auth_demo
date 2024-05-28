@@ -2,14 +2,18 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const port = process.env.PORT;
 const cookieParser = require("cookie-parser");
 
-
 const app = express();
+const port = process.env.PORT;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()) ;
+app.use(cookieParser());
+
+// CORS middleware setup
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
 app.use((req, res, next) => {
     console.log("Request is made");
     console.log("Host name - " + req.hostname);
@@ -18,14 +22,11 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// 
+// Routes setup
 const authRouter = require('../backend/routes/authRouter')
-app.use("/api/user",authRouter)
-// 
-app.use(cookieParser()) ;
-app.use(express.urlencoded({ extended: false }));
+app.use("/api/user", authRouter);
 
+// MongoDB connection
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {

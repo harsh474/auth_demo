@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";  
+import axios from "../Components/axiosConfig"
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,7 +12,7 @@ function Login() {
   const loginUser = (e) => {
     e.preventDefault();
     console.log(email, password);
-    axios.post('http://localhost:4000/api/user/login', { email, password })
+    axios.post('http://localhost:4000/api/user/login', { email, password },{withCredentials:true})
       .then((response) => {
         console.log('Login successful:', response.data);
         toast.success("Login successful!");

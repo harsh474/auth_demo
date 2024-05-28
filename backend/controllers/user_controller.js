@@ -20,7 +20,7 @@ const user_signup = async(req,res)  =>{
         const token = generateToken(user._id,email,password) ;
         console.log('Token generated ='+token) ;
         // res.status(201).json({email,token}) ; // send back email and token
-        res.cookie('token', token).status(200).json({ email, token }); // Optionally send back email and token in the response body as well
+        res.cookie('auth_token', token).status(200).json({ email, token }); // Optionally send back email and token in the response body as well
 
         
     } catch (error) {
@@ -38,14 +38,27 @@ const user_login = async (req,res) =>{
 
         // res.status(201).json({email,token}) ; 
         // res.status(201).json({hi:123,krish:1234})
-        res.cookie("TOKEN", token).status(210).json({ email, token }); // Optionally send back email and token in the response body as well
+        // res.cookie("token", token).status(210).json({ email, token }); // Optionally send back email and token in the response body as well
         // res.status(200).json({ email, token }); // Optionally send back email and token in the response body as well
+        res.cookie('auth_token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Ensure this is true in production
+            // sameSite: 'strict' // Additional security
+          });
+          res.json({ message: 'Login successful' });
     } catch (error) {
         res.status(400).json({error:error.message});
     }
 }; 
 
+const user_profile = async (req,res) =>{ 
+    console.log("Checking profile!    ",req.cookies.uid) ;  
+    // console.log(req) ;
+    // // res.send("Profile page is working....") ;  
+    // res.send(req.cookie) ;
+    res.status(200).json({message:"Profile page is working...."}) ;
+};
 module.exports ={ 
-    user_login,user_signup
+    user_login,user_signup,user_profile
 }
 
