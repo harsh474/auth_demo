@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Avvvatars from 'avvvatars-react'
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+        {/* <Avvvatars style=”shape” value="tim@apple.com" /> */}
+        <Avvvatars value="best_user@gmail.com" />
+    </div>
   )
 }
 
