@@ -1,13 +1,14 @@
 //authRouter.js
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const { user_signup, user_login,user_profile } = require("../controllers/user_controller");
+const { user_signup, user_login,user_profile ,user_logout } = require("../controllers/user_controller");
 // const auth = require("../middleware/authmiddleware");
 const router = express.Router();
 // const {auth} = require("../middleware/authmiddleware")
 router.post("/signup", user_signup);
 router.post("/login", user_login);
 router.get("/dashboard",protected_route,  user_profile);  
+router.get("/logout",user_logout) ;
 function protected_route(req,res,next){
     console.log("Protected route called");
     try {
