@@ -1,6 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { user_signup, user_login, user_profile } = require("../controllers/user_controller");
+
+const { user_signup, user_login,user_profile ,user_logout } = require("../controllers/user_controller");
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
