@@ -6,9 +6,9 @@ return (
     <div> 
      <nav> 
             <div className="nav-container">
-                    <div className="nav-item">
+                    {/* <div className="nav-item">
                         <NavLink to="/">Home</NavLink>
-                    </div>
+                    </div> */}
                     <div className="nav-item">
                         <NavLink to="/login">Login</NavLink>
                     </div>
